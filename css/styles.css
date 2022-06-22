@@ -5,7 +5,7 @@ html {
 body {
     font-family: 'Open Sans', sans-serif;
     font-size: 1em;
-    text-align: left;
+    /* text-align: left; */
 }
 
 ul,
@@ -22,11 +22,40 @@ a {
 h1 {
     font-size: 72px;
     background: -webkit-linear-gradient(#77EDED, #306161);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 .container {
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    /* flex-flow: row wrap; */
     width: 90%;
-    margin: 50px;
 }
+
+/* header,
+main,
+footer { */
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  /* flex-flow: row wrap; */
+/* } */
+
+form button {
+    margin: 10px;
+}
+
+.square {
+    width: 150px;
+    height: 150px;
+    background-color: yellow;
+}
+  
+/* .square:after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+} */

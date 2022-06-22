@@ -11,20 +11,22 @@
 </head>
 <body>
     <header class="container">
-        <h1>Color Tool</h1>
+        <h1>CSS Color Tool</h1>
     </header>
     <main class="container">
-
-        <form>
+        <div id="input-form">
+            <form>
             <label>Have a RGB value?</label>
-            <input placeholder="Enter RGB Value">
-            <button>Submit</button>
+            <input type="text" name="rgb-input" placeholder="Enter RGB Value">
+            <button id="rgb-input-btn">Submit</button>
             <br />
             <label>Have a HEX value?</label>
-            <input placeholder="Enter HEX Value">
-            <button>Submit</button>
-
+            <input type="text" name="hex-input" placeholder="Enter HEX Value">
+            <button id="hex-input-btn">Submit</button>
         </form>
+        </div>
+        <div id="color-swatch"></div>
+
     </main>
     <footer>
     </footer>
