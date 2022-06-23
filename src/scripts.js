@@ -1,21 +1,34 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const body = document.querySelector('body')
+    const darkBtn = document.querySelector('#moon')
+    const lightBtn = document.querySelector('#sun')
+    const swatch = document.createElement('div')
+    const swatchTitle = document.createElement('h2')
+    const colorList = document.createElement('ul')
+    const rgbName = document.createElement('li')
+    const hexName = document.createElement('li')
+    const cmykName = document.createElement('li')
+    const hslName = document.createElement('li')
+    const previousContainer = document.querySelector('#previous')
     
+    //Toggle light & dark mode
+    darkBtn.addEventListener('mouseenter', () => {
+        body.classList.add('dark')
+    })
+    lightBtn.addEventListener('mouseenter', () => {
+        body.classList.remove('dark')
+    })
+
+    //Submit hex value & return color info
     const form= document.querySelector('form')
+    
     form.addEventListener('submit', (e) => {
         e.preventDefault()
-        
-    //Fetch to The Color API
+        //Fetch to The Color API
         fetch(`https://www.thecolorapi.com/id?hex=${e.target.hex.value}`)
         .then(res => res.json())
         .then(colorData => {
             //Construct swatch square & names
-            const swatch = document.createElement('div')
-            const swatchTitle = document.createElement('h2')
-            const colorList = document.createElement('ul')
-            const rgbName = document.createElement('li')
-            const hexName = document.createElement('li')
-            const cmykName = document.createElement('li')
-            const hslName = document.createElement('li')
             
             swatchTitle.textContent = colorData.name.value
             swatchTitle.style.color = colorData.hex.value
@@ -60,42 +73,71 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 submitColor(colorData)
             })
+
+            //Previously viewed colors
+            //Fetch from db.json    
+            fetch('http://localhost:3000/colors')
+            .then(res => res.json())
+            .then(previousData => previousData.forEach((eachColor) => {
+                const previousColor = document.createElement('div')
+                previousColor.classList = "sm-square"
+                previousColor.style.background = eachColor.hex
+        
+                previousColor.addEventListener('click', () => {
+                    console.log('click')
+                    swatchTitle.textContent = eachColor.name
+                    swatchTitle.style.color = eachColor.hex
+        
+                    swatch.classList = "square"
+                    swatch.style.backgroundColor = eachColor.hex
+        
+                    hexName.textContent = `HEX: ${eachColor.hex}`
+                    rgbName.textContent = `RGB: ${eachColor.rgb}`
+                    cmykName.textContent = `CMYK: ${eachColor.cmyk}`
+                    hslName.textContent = `HSL: ${eachColor.hsl}`
+        
+                })    
+                previousContainer.append(previousColor)
+            }))
             
-
-        })
-
-        const textSample = document.querySelector('#text h2')
-        textSample.textContent = "text"
-        const textForm = document.querySelector('#text-form')
-        textForm.addEventListener('submit', (e) => {
-            e.preventDefault()
-            textSample.textContent = e.target.sample.value
-        })
-        
-        //Get complement color
-        // fetch(`https://www.thecolorapi.com/scheme?hex=${e.target.hex.value}&mode=complement&count=1`)
-        // .then(res => res.json())
-        // .then(complementData => {
-        //     console.log(complementData)
-        //     const compSwatch = document.querySelector('#complement')
-        //     compSwatch.src = complementData.colors[0].image.bare
-        //     const compName = document.createElement('p')
-        //     compName.textContent = complementData.colors[0].name.value
-        //     document.querySelector('#schemes').append(compName)
-
-        //Get analogous color
-        // fetch(`https://www.thecolorapi.com/scheme?hex=${e.target.hex.value}&mode=analogic&count=3`)
-        // .then(res => res.json())
-        // .then(analogousData => {
-        //     console.log(analogousData)
-        //     const analogousSwatch = document.querySelector('#analogous')
-        //     analogousSwatch.src = analogousData.image.bare
-        //     const analogousName = document.createElement('p')
-        //     analogousName.textContent = analogousData.colors[0].hex.value
-        //     document.querySelector('#analogous').append(analogousName)
-
-        // })
-        
-        
     })
+
+    //Sample text color
+    const textSample = document.querySelector('#text h2')
+    textSample.textContent = "text"
+    const textForm = document.querySelector('#text-form')
+    textForm.addEventListener('submit', (e) => {
+        e.preventDefault()
+        textSample.textContent = e.target.sample.value
+    })
+    
+    //Get complement color
+    // fetch(`https://www.thecolorapi.com/scheme?hex=${e.target.hex.value}&mode=complement&count=1`)
+    // .then(res => res.json())
+    // .then(complementData => {
+    //     console.log(complementData)
+    //     const compSwatch = document.querySelector('#complement')
+    //     compSwatch.src = complementData.colors[0].image.bare
+    //     const compName = document.createElement('p')
+    //     compName.textContent = complementData.colors[0].name.value
+    //     document.querySelector('#schemes').append(compName)
+
+    //Get analogous color
+    // fetch(`https://www.thecolorapi.com/scheme?hex=${e.target.hex.value}&mode=analogic&count=3`)
+    // .then(res => res.json())
+    // .then(analogousData => {
+    //     console.log(analogousData)
+    //     const analogousSwatch = document.querySelector('#analogous')
+    //     analogousSwatch.src = analogousData.image.bare
+    //     const analogousName = document.createElement('p')
+    //     analogousName.textContent = analogousData.colors[0].hex.value
+    //     document.querySelector('#analogous').append(analogousName)
+
+    // })
+        
+     
+    
+  
+})
+
 

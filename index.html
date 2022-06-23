@@ -1,52 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Color Tool</title>
-    <link rel="stylesheet" href="./css/normalize.css" />
-    <link rel="stylesheet" href="./css/styles.css" />
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Color Tool</title>
+        <link rel="stylesheet" href="./css/normalize.css" />
+        <link rel="stylesheet" href="./css/styles.css" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Marck+Script&display=swap" rel="stylesheet">
-    
-    <script defer src="./src/scripts.js"></script>
-</head>
-<body>
-    <header>
-        <h1>CSS Color Tool</h1>
-    </header>
-    <main>
-        <div class="container">
-            <form id="input-form">
-            <!-- <label>Have a RGB value?</label>
-            <input type="text" id="#rgb" name="rgb" placeholder="Enter RGB Value">
-            <button id="rgb-input-btn">Submit</button>
-            <br /> -->
-            <label>Have a HEX value?</label>
-            <input type="text" name="hex" placeholder="6 Digit Value NO #">
-            <button id="hex-input-btn">Submit</button>
-        </form>
-        </div>
-        <div id="color-swatch"></div>
-        <div id="schemes">
-            <img id="complement" src="./assets/comp.jpg">   
-        </div>
-        <div>
-            <img id="analogous" src="./assets/comp.jpg"> 
-        </div>
-        <div id="text" class="hidden">
-            <h2></h2>
-            <form id="text-form">
-                <input type="text" id="sample" name="sample" placeholder="Change the text">
-                <button id="text-input-btn">Submit</button>
-            </form>
-        </div>
+        <!-- Font Awesome -->
+        <script src="https://kit.fontawesome.com/d29d7c25a6.js" crossorigin="anonymous"></script>
+        
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Marck+Script&display=swap" rel="stylesheet">
+        
+        <script defer src="./src/scripts.js"></script>
+    </head>
+    <body>
+        <header>
+            <h1>CSS Color Tool</h1>
+        </header>
+        <main>
+            <section class="container">
+                <form id="input-form">
+                    <!-- <label>Have a RGB value?</label>
+                    <input type="text" id="#rgb" name="rgb" placeholder="Enter RGB Value">
+                    <button id="rgb-input-btn">Submit</button>
+                    <br /> -->
+                    <label>Have a HEX value?</label>
+                    <input type="text" name="hex" placeholder="6 Digit Value NO #">
+                    <button id="hex-input-btn">Submit</button>
+                </form>
+                <div id="mode">
+                    <p class="fontawesome-icon fa-mode" id="sun">
+                        <i class="fa-solid fa-sun"></i>
+                    </p>
+                    <div class="fontawesome-icon fa-mode" id="moon">
+                        <i class="fa-solid fa-moon"></i>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <article id="color-swatch"></article>
+                <article id="schemes">
+                    <img id="complement" src="./assets/placeholder.png">   
+                </article>
+                <article>
+                    <img id="analogous" src="./assets/placeholder.png"> 
+                </article>
+            </section>
+        
+            <section id="text" class="hidden">
+                <h2></h2>
+                <form id="text-form">
+                    <input type="text" id="sample" name="sample" placeholder="Change the text">
+                    <button id="text-input-btn">Submit</button>
+                </form>
+            </section>
 
-    </main>
-    <footer>
-    </footer>
-</body>
+            <section id="previous">
+                <div></div>
+            </section>
+
+        </main>
+        <footer>
+        </footer>
+    </body>
 </html>
