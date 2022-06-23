@@ -7,27 +7,43 @@
     <title>Color Tool</title>
     <link rel="stylesheet" href="./css/normalize.css" />
     <link rel="stylesheet" href="./css/styles.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Marck+Script&display=swap" rel="stylesheet">
+    
     <script defer src="./src/scripts.js"></script>
 </head>
 <body>
-    <header class="container">
+    <header>
         <h1>CSS Color Tool</h1>
     </header>
-    <main class="container">
-        <div id="input-form">
-            <form>
-            <label>Have a RGB value?</label>
-            <input type="text" name="rgb-input" placeholder="Enter RGB Value">
+    <main>
+        <div class="container">
+            <form id="input-form">
+            <!-- <label>Have a RGB value?</label>
+            <input type="text" id="#rgb" name="rgb" placeholder="Enter RGB Value">
             <button id="rgb-input-btn">Submit</button>
-            <br />
+            <br /> -->
             <label>Have a HEX value?</label>
-            <input type="text" name="hex-input" placeholder="Enter HEX Value">
+            <input type="text" name="hex" placeholder="6 Digit Value NO #">
             <button id="hex-input-btn">Submit</button>
         </form>
         </div>
         <div id="color-swatch"></div>
-        <div id="gradient"></div>
-        <div id="text-example"></div>
+        <div id="schemes">
+            <img id="complement" src="./assets/comp.jpg">   
+        </div>
+        <div>
+            <img id="analogous" src="./assets/comp.jpg"> 
+        </div>
+        <div id="text" class="hidden">
+            <h2></h2>
+            <form id="text-form">
+                <input type="text" id="sample" name="sample" placeholder="Change the text">
+                <button id="text-input-btn">Submit</button>
+            </form>
+        </div>
 
     </main>
     <footer>

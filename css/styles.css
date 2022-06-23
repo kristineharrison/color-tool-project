@@ -21,28 +21,43 @@ a {
 
 h1 {
     font-size: 72px;
-    background: -webkit-linear-gradient(#77EDED, #306161);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: black;
 }
 
 .container {
-    /* display: flex;
+    display: flex;
     justify-content: center;
-    align-items: center; */
+    align-items: center;
     /* flex-flow: row wrap; */
     width: 90%;
 }
 
-/* header,
-main,
-footer { */
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
-  /* flex-flow: row wrap; */
-/* } */
+header,
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row wrap;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column wrap;
+}
+.div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column wrap;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 form button {
     margin: 10px;
@@ -59,3 +74,14 @@ form button {
     display: block;
     padding-bottom: 100%;
 } */
+
+#text h2 {
+    font-family: 'Marck Script', cursive;
+    font-size: 4em;
+    margin: 20px;
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
