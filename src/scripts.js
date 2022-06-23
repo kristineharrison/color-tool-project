@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const cmykName = document.createElement('li')
     const hslName = document.createElement('li')
     const previousContainer = document.querySelector('#previous')
+    const schemeContainer = document.querySelector('#schemes')
     
     //Toggle light & dark mode
     darkBtn.addEventListener('mouseenter', () => {
@@ -21,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //Submit hex value & return color info
     const form= document.querySelector('form')
-    
     form.addEventListener('submit', (e) => {
         e.preventDefault()
         //Fetch to The Color API
@@ -72,72 +72,92 @@ document.addEventListener('DOMContentLoaded', () => {
                 .then(color => console.log(color))
                 }
                 submitColor(colorData)
+                form.reset()
             })
 
-            //Previously viewed colors
-            //Fetch from db.json    
-            fetch('http://localhost:3000/colors')
-            .then(res => res.json())
-            .then(previousData => previousData.forEach((eachColor) => {
-                const previousColor = document.createElement('div')
-                previousColor.classList = "sm-square"
-                previousColor.style.background = eachColor.hex
+        //Previously viewed colors
+        //Fetch from db.json
+        fetch('http://localhost:3000/colors')
+        .then(res => res.json())
+        .then(previousData => previousData.forEach((eachColor) => {
+            const previousColor = document.createElement('div')
+            previousColor.classList = "sm-square"
+            previousColor.style.background = eachColor.hex
+    
+            previousColor.addEventListener('click', () => {
+                console.log('click')
+                schemeContainer.classList.add('hidden')
+                swatchTitle.textContent = eachColor.name
+                swatchTitle.style.color = eachColor.hex
+    
+                swatch.classList = "square"
+                swatch.style.backgroundColor = eachColor.hex
+    
+                hexName.textContent = `HEX: ${eachColor.hex}`
+                rgbName.textContent = `RGB: ${eachColor.rgb}`
+                cmykName.textContent = `CMYK: ${eachColor.cmyk}`
+                hslName.textContent = `HSL: ${eachColor.hsl}`
+                textSample.style.color = eachColor.hex
+                
+                //Add delete button
+                const btn = document.createElement('button')
+                btn.textContent = " x "
+                btn.addEventListener('click',()=> {
+                    fetch(`http://localhost:3000/colors/${eachColor.id}`, {
+                        method:'DELETE'
+                    })
+                    .then(() => previousColor.remove())
+                })
+                previousColor.appendChild(btn)
+            })
+            previousContainer.append(previousColor)
+        }))
+
+        //Display color schemes
+        schemeContainer.classList.remove('hidden')
+
+        //Get complement original
+    
+        fetch(`https://www.thecolorapi.com/scheme?hex=${e.target.hex.value}&mode=complement&count=1`)
+        .then(res => res.json())
+        .then(complementData => {
+            console.log(complementData)
+            const complementSwatch = document.querySelector('#complementImg')
+            complementSwatch.src = complementData.colors[0].image.named
+        })
         
-                previousColor.addEventListener('click', () => {
-                    console.log('click')
-                    swatchTitle.textContent = eachColor.name
-                    swatchTitle.style.color = eachColor.hex
-        
-                    swatch.classList = "square"
-                    swatch.style.backgroundColor = eachColor.hex
-        
-                    hexName.textContent = `HEX: ${eachColor.hex}`
-                    rgbName.textContent = `RGB: ${eachColor.rgb}`
-                    cmykName.textContent = `CMYK: ${eachColor.cmyk}`
-                    hslName.textContent = `HSL: ${eachColor.hsl}`
-        
-                })    
-                previousContainer.append(previousColor)
-            }))
-            
+        //Get analogous color
+        fetch(`https://www.thecolorapi.com/scheme?hex=${e.target.hex.value}&mode=analogic&count=3`)
+        .then(res => res.json())
+        .then(analogousData => {
+            console.log(analogousData)
+            const analogousSwatch = document.querySelector('#analogousImg')
+            analogousSwatch.src = analogousData.image.named
+        })
+
+         //Get monochrome color
+         fetch(`https://www.thecolorapi.com/scheme?hex=${e.target.hex.value}&mode=monochrome&count=4`)
+        .then(res => res.json())
+        .then(monochromeData => {
+            console.log(monochromeData)
+            const monochromeSwatch = document.querySelector('#monochromeImg')
+            monochromeSwatch.src = monochromeData.image.named
+        })
     })
 
     //Sample text color
     const textSample = document.querySelector('#text h2')
-    textSample.textContent = "text"
     const textForm = document.querySelector('#text-form')
+    textSample.textContent = "text"
     textForm.addEventListener('submit', (e) => {
         e.preventDefault()
         textSample.textContent = e.target.sample.value
+
+        textForm.reset()
     })
     
-    //Get complement color
-    // fetch(`https://www.thecolorapi.com/scheme?hex=${e.target.hex.value}&mode=complement&count=1`)
-    // .then(res => res.json())
-    // .then(complementData => {
-    //     console.log(complementData)
-    //     const compSwatch = document.querySelector('#complement')
-    //     compSwatch.src = complementData.colors[0].image.bare
-    //     const compName = document.createElement('p')
-    //     compName.textContent = complementData.colors[0].name.value
-    //     document.querySelector('#schemes').append(compName)
+ 
 
-    //Get analogous color
-    // fetch(`https://www.thecolorapi.com/scheme?hex=${e.target.hex.value}&mode=analogic&count=3`)
-    // .then(res => res.json())
-    // .then(analogousData => {
-    //     console.log(analogousData)
-    //     const analogousSwatch = document.querySelector('#analogous')
-    //     analogousSwatch.src = analogousData.image.bare
-    //     const analogousName = document.createElement('p')
-    //     analogousName.textContent = analogousData.colors[0].hex.value
-    //     document.querySelector('#analogous').append(analogousName)
-
-    // })
-        
-     
-    
   
+
 })
-
-

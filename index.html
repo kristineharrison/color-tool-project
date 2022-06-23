@@ -20,7 +20,7 @@
     </head>
     <body>
         <header>
-            <h1>CSS Color Tool</h1>
+            <h1>Color Tool</h1>
         </header>
         <main>
             <section class="container">
@@ -44,11 +44,16 @@
             </section>
             <section>
                 <article id="color-swatch"></article>
-                <article id="schemes">
-                    <img id="complement" src="./assets/placeholder.png">   
-                </article>
-                <article>
-                    <img id="analogous" src="./assets/placeholder.png"> 
+                <article id="schemes" class="hidden">
+                    <ul>
+                        <li id="complement">
+                            <img id="complementImg" src="./assets/placeholder.png"> 
+                            Complement</li>
+                        <li id="analogous"><img id="analogousImg" src="./assets/placeholder.png"> 
+                            Analogous</li>
+                        <li id="monochrome"><img id="monochromeImg" src="./assets/placeholder.png"> 
+                            Monochrome</li>
+                    </ul>     
                 </article>
             </section>
         
@@ -61,7 +66,6 @@
             </section>
 
             <section id="previous">
-                <div></div>
             </section>
 
         </main>
