@@ -1,43 +1,36 @@
 html {
-    font-size: 16px;
+    font-size: 18px;
 }
 
 body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Rubik', sans-serif;
     font-size: 1em;
-    /* text-align: left; */
+    text-align: center;
 }
 
 ul,
 ol {
   list-style-type: none;
-  margin: 0;
-  padding: 0;
+  margin: 15px 0 0 0;
+  padding: 4px;
 }
 
 a {
+    color: #008080;
     text-decoration: none;
 }
 
 h1 {
-    font-size: 72px;
+    font-size: 4em;
     color: black;
 }
 
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-flow: column wrap;
-    width: 90%;
+h2 {
+    font-size: 2em;
 }
 
-#previous {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-flow: row wrap;
-    margin-top: 50px;
+input {
+    margin-left: 10px;
 }
 
 header,
@@ -54,6 +47,7 @@ main {
     align-items: center;
     flex-flow: column wrap;
 }
+
 div {
     display: flex;
     justify-content: center;
@@ -71,6 +65,59 @@ form button {
     margin: 10px;
 }
 
+img {
+    border-radius: 7px;
+}
+
+#previous {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row wrap;
+    margin-top: 50px;
+}
+
+#schemes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row wrap;
+}
+
+#text h2 {
+    font-family: 'Marck Script', cursive;
+    font-size: 4em;
+    margin: 20px;
+    text-align: center;
+}
+
+#mode i {
+    font-size: 2.5em;
+    padding: 10px;
+}
+
+#gradient {
+    padding: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column wrap;
+    width: 70%;
+}
+
+.definitions,
+#scheme-defs {
+    font-size: .8em;
+    text-align: left;
+    line-height: 1.8;
+}
 
 .square {
     width: 300px;
@@ -85,6 +132,7 @@ form button {
     background-color: green;
     border-radius: 7px;
     padding: 10px;
+    margin-bottom: 100px;
 }
 
 .rectangle {
@@ -92,26 +140,6 @@ form button {
     height: 200px;
     background-color: transparent;
     border-radius: 7px;
-}
-
-img {
-    border-radius: 7px;
-}
-
-#text h2 {
-    font-family: 'Marck Script', cursive;
-    font-size: 4em;
-    margin: 20px;
-    text-align: center;
-}
-
-.hidden {
-    display: none;
-}
-
-#mode i {
-    font-size: 2.5em;
-    padding: 10px;
 }
 
 .dark {
@@ -122,4 +150,3 @@ img {
 .dark h1 {
     color: white;
 }
-

@@ -14,7 +14,7 @@
         <!-- Google Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Dosis&family=Marck+Script&family=Parisienne&family=Rubik&family=Staatliches&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Dosis&family=Marck+Script&family=Parisienne&family=Rubik:wght@400;600&family=Staatliches&display=swap" rel="stylesheet">
         
         <script defer src="./src/scripts.js"></script>
     </head>
@@ -24,13 +24,14 @@
         </header>
         <main>
             <section class="container">
+                <p>Working on a project that involves both print and digital color and
+                    need various color formats? Need ideas for what matches a certain shade? 
+                    Curious how a certain font looks in a specific color? All you need is the 
+                    six digit hex color value! 
+                </p>
                 <form id="input-form">
-                    <!-- <label>Have a RGB value?</label>
-                    <input type="text" id="#rgb" name="rgb" placeholder="Enter RGB Value">
-                    <button id="rgb-input-btn">Submit</button>
-                    <br /> -->
                     <label>Have a HEX value?</label>
-                    <input type="text" name="hex" placeholder="6 Digit Value NO #">
+                    <input type="text" name="hex" placeholder="Numbers Only NO #">
                     <button id="hex-input-btn">Submit</button>
                 </form>
                 <div id="mode">
@@ -41,27 +42,62 @@
                         <i class="fa-solid fa-moon"></i>
                     </div>
                 </div>
+                <div>
+                    <ul class="definitions">
+                        <li><strong>Hexadecimal Color:</strong> supported in all 
+                            browsers and specified with #RRGGBB. 
+                            <a href="https://www.w3schools.com/colors/colors_hexadecimal.asp"
+                            alt="Hex Calculator" target="_blank">Hex Calculator</a>
+                        </li>
+                        <li><strong>RGB Color:</strong> most often used for web 
+                            and computer monitor colors.
+                        </li>
+                        <li><strong>CMYK Color:</strong> mainly used for print operations.
+                        </li>
+                        <li><strong>HSL Color:</strong>  stands for hue, saturation, and lightness. 
+                            Is an alternative representation of RGB.
+                        </li>
+                    </ul>
+                </div>
             </section>
-            <section>
-                <article id="color-swatch"></article>
-                <article id="schemes" class="hidden">
-                    <ul>
-                        <li id="complement">
+            <section class="container">
+                <div id="scheme-div">
+                    <article id="color-swatch"></article>
+                    <article id="schemes">
+                        <figure id="complement" class="hidden">
                             <img id="complementImg" src="./assets/placeholder.png"> 
-                            Complement</li>
-                        <li id="analogous"><img id="analogousImg" src="./assets/placeholder.png"> 
-                            Analogous</li>
-                        <li id="monochrome"><img id="monochromeImg" src="./assets/placeholder.png"> 
-                            Monochrome</li>
-                    </ul>     
-                </article>
-                <article id="gradient" class="hidden"></article>
+                            <figcaption>Complement</figcaption>
+                        </figure>
+                        <figure id="analogous" class="hidden">
+                            <img id="analogousImg" src="./assets/placeholder.png"> 
+                            <figcaption>Analogous</figcaption>
+                        </figure>
+                        <figure id="monochrome" class="hidden">
+                            <img id="monochromeImg" src="./assets/placeholder.png"> 
+                            <figcaption>Monochrome</figcaption>
+                        </figure>
+                        <div>
+                            <ul id="scheme-defs" class="hidden">
+                                <li><strong>Complementary color:</strong> on opposite side
+                                of the color wheel.
+                                </li>
+                                <li><strong>Analogous Color:</strong> next to each other 
+                                on the color wheel.
+                                </li>
+                                <li><strong>Monochrome Color:</strong> variations of one color.
+                                
+                                </li>
+                            </ul>
+                        </div>
+                    </article>
+                    <article id="gradient"></article>
+                </div>
             </section>
         
-            <section id="text" >
-                <h2>TESTESETSSTASEAST</h2>
+            <section id="text" class="hidden">
+                <h2></h2>
                 <form id="text-form">
-                    <input type="text" id="sample" name="sample" placeholder="Change the text">
+                    <input type="text" id="sample" name="sample" placeholder="Change the text &amp font">
                     <button id="text-input-btn">Submit</button>
                 </form>
                 <select id="font-dropdown" name="fonts" onchange="getOption(this);">

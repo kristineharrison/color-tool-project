@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const h1 = document.querySelector('h1')
     const body = document.querySelector('body')
     const darkBtn = document.querySelector('#moon')
     const lightBtn = document.querySelector('#sun')
@@ -10,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const cmykName = document.createElement('li')
     const hslName = document.createElement('li')
     const previousContainer = document.querySelector('#previous')
-    const schemeContainer = document.querySelector('#schemes')
+    
     
     //Toggle light & dark mode
     darkBtn.addEventListener('mouseenter', () => {
@@ -24,11 +25,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const form= document.querySelector('form')
     form.addEventListener('submit', (e) => {
         e.preventDefault()
+        
+        //Display schemes
+        const complementScheme = document.querySelector('#complement')
+        const analogicScheme = document.querySelector('#analogous')
+        const monochromeScheme = document.querySelector('#monochrome')
+        const schemeDefs = document.querySelector('#scheme-defs')
+        schemeDefs.classList.remove('hidden')
+        complementScheme.classList.remove('hidden')
+        analogicScheme.classList.remove('hidden')
+        monochromeScheme.classList.remove('hidden')
+
         //Fetch to The Color API
         fetch(`https://www.thecolorapi.com/id?hex=${e.target.hex.value}`)
         .then(res => res.json())
         .then(colorData => {
             //Construct swatch square & names
+            h1.style.color = colorData.hex.value
             swatchTitle.textContent = colorData.name.value
             swatchTitle.style.color = colorData.hex.value
 
@@ -86,11 +99,14 @@ document.addEventListener('DOMContentLoaded', () => {
             previousColor.style.background = eachColor.hex
     
             previousColor.addEventListener('click', () => {
-                console.log('click')
-                schemeContainer.classList.add('hidden')
                 gradientContainer.classList.add('hidden')
+                complementScheme.classList.add('hidden')
+                analogicScheme.classList.add('hidden')
+                monochromeScheme.classList.add('hidden')
+                schemeDefs.classList.add('hidden')
                 swatchTitle.textContent = eachColor.name
                 swatchTitle.style.color = eachColor.hex
+                h1.style.color = eachColor.hex
     
                 swatch.classList = "square"
                 swatch.style.backgroundColor = eachColor.hex
@@ -115,14 +131,11 @@ document.addEventListener('DOMContentLoaded', () => {
             previousContainer.append(previousColor)
         }))
 
-        //Display color schemes
-        schemeContainer.classList.remove('hidden')
 
         //Get complement color
         fetch(`https://www.thecolorapi.com/scheme?hex=${e.target.hex.value}&mode=complement&count=1`)
         .then(res => res.json())
         .then(complementData => {
-            console.log(complementData)
             const complementSwatch = document.querySelector('#complementImg')
             complementSwatch.src = complementData.colors[0].image.named
         })
@@ -131,7 +144,6 @@ document.addEventListener('DOMContentLoaded', () => {
         fetch(`https://www.thecolorapi.com/scheme?hex=${e.target.hex.value}&mode=analogic&count=3`)
         .then(res => res.json())
         .then(analogousData => {
-            console.log(analogousData)
             const analogousSwatch = document.querySelector('#analogousImg')
             analogousSwatch.src = analogousData.image.named
         })
@@ -140,7 +152,6 @@ document.addEventListener('DOMContentLoaded', () => {
         fetch(`https://www.thecolorapi.com/scheme?hex=${e.target.hex.value}&mode=monochrome&count=4`)
         .then(res => res.json())
         .then(monochromeData => {
-            console.log(monochromeData)
             const monochromeSwatch = document.querySelector('#monochromeImg')
             monochromeSwatch.src = monochromeData.image.named
         })
@@ -150,6 +161,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const gradientBox = document.createElement('div')
         const gradientBtn = document.createElement('button')
         const color1 = e.target.hex.value
+        const color1Name = document.createElement('p')
+        const color2Name = document.createElement('p')
         gradientContainer.classList.remove('hidden')
         gradientBox.classList = ("rectangle")
         gradientBtn.textContent = "Create Gradient"
@@ -157,9 +170,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const setGradient = () => {
             const randomColor = Math.floor(Math.random()*16777215).toString(16);
             gradientBox.style.background = `linear-gradient(to right, #${color1}, #${randomColor})`
+
+            color1Name.textContent = `Color One: #${color1}`
+            color2Name.textContent = `Color Two: #${randomColor}`
         }
         gradientBox.append(gradientBtn)
-        document.querySelector('#gradient').append(gradientBox)
+        document.querySelector('#gradient').append(gradientBox, color1Name, color2Name)
         
         gradientBtn.addEventListener('click', setGradient)
     })
@@ -167,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
     //Sample text color
     const textSample = document.querySelector('#text h2')
     const textForm = document.querySelector('#text-form')
-    textSample.textContent = "text"
+    textSample.textContent = "sample text"
     textForm.addEventListener('submit', (e) => {
         e.preventDefault()
         textSample.textContent = e.target.sample.value
