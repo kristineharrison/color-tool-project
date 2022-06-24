@@ -1,12 +1,20 @@
 {
   "colors": [
     {
+      "rgb": "rgb(255, 191, 0)",
+      "hex": "#FFBF00",
+      "cmyk": "cmyk(0, 25, 100, 0)",
+      "hsl": "hsl(45, 100%, 50%)",
+      "name": "Amber",
+      "id": 16
+    },
+    {
       "rgb": "rgb(128, 128, 0)",
       "hex": "#808000",
       "cmyk": "cmyk(0, 0, 100, 50)",
       "hsl": "hsl(60, 100%, 25%)",
       "name": "Olive",
-      "id": 12
+      "id": 17
     }
   ],
   "fonts": [

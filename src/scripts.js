@@ -26,8 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', (e) => {
         e.preventDefault()
         
-       
-
         //Display schemes
         const complementScheme = document.querySelector('#complement')
         const analogicScheme = document.querySelector('#analogous')
@@ -191,7 +189,6 @@ document.addEventListener('DOMContentLoaded', () => {
     textForm.addEventListener('submit', (e) => {
         e.preventDefault()
         textSample.textContent = e.target.sample.value
-
         textForm.reset()
     })
 }) 
