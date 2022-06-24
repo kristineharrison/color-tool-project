@@ -14,7 +14,7 @@
         <!-- Google Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Marck+Script&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Dosis&family=Marck+Script&family=Parisienne&family=Rubik&family=Staatliches&display=swap" rel="stylesheet">
         
         <script defer src="./src/scripts.js"></script>
     </head>
@@ -55,14 +55,22 @@
                             Monochrome</li>
                     </ul>     
                 </article>
+                <article id="gradient" class="hidden"></article>
             </section>
         
-            <section id="text" class="hidden">
-                <h2></h2>
+            <section id="text" >
+                <h2>TESTESETSSTASEAST</h2>
                 <form id="text-form">
                     <input type="text" id="sample" name="sample" placeholder="Change the text">
                     <button id="text-input-btn">Submit</button>
                 </form>
+                <select id="font-dropdown" name="fonts" onchange="getOption(this);">
+                    <option>Marck Script</option>
+                    <option>Staatliches</option>
+                    <option>Dosis</option>
+                    <option>Parisienne</option>
+                    <option>Rubik</options>
+                </select>
             </section>
 
             <section id="previous">

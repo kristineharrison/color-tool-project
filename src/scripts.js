@@ -29,7 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(res => res.json())
         .then(colorData => {
             //Construct swatch square & names
-            
             swatchTitle.textContent = colorData.name.value
             swatchTitle.style.color = colorData.hex.value
 
@@ -45,11 +44,13 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelector('#color-swatch')
                 .append(swatchTitle, swatch, colorList)
 
-            //Change text script color
+            //Change text script & icon color
             const textContainer = document.querySelector('#text')
-            textContainer.classList.remove('hidden')
             const textScript = document.querySelector('#text')
+            textContainer.classList.remove('hidden')
             textScript.style.color = colorData.hex.value
+            darkBtn.style.color = colorData.hex.value
+            lightBtn.style.color = colorData.hex.value
 
             //Save fetched color info to db.json
             function submitColor(color) {
@@ -87,6 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
             previousColor.addEventListener('click', () => {
                 console.log('click')
                 schemeContainer.classList.add('hidden')
+                gradientContainer.classList.add('hidden')
                 swatchTitle.textContent = eachColor.name
                 swatchTitle.style.color = eachColor.hex
     
@@ -116,8 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
         //Display color schemes
         schemeContainer.classList.remove('hidden')
 
-        //Get complement original
-    
+        //Get complement color
         fetch(`https://www.thecolorapi.com/scheme?hex=${e.target.hex.value}&mode=complement&count=1`)
         .then(res => res.json())
         .then(complementData => {
@@ -135,16 +136,34 @@ document.addEventListener('DOMContentLoaded', () => {
             analogousSwatch.src = analogousData.image.named
         })
 
-         //Get monochrome color
-         fetch(`https://www.thecolorapi.com/scheme?hex=${e.target.hex.value}&mode=monochrome&count=4`)
+        //Get monochrome color
+        fetch(`https://www.thecolorapi.com/scheme?hex=${e.target.hex.value}&mode=monochrome&count=4`)
         .then(res => res.json())
         .then(monochromeData => {
             console.log(monochromeData)
             const monochromeSwatch = document.querySelector('#monochromeImg')
             monochromeSwatch.src = monochromeData.image.named
         })
-    })
 
+        //Create gradient
+        const gradientContainer = document.querySelector('#gradient')
+        const gradientBox = document.createElement('div')
+        const gradientBtn = document.createElement('button')
+        const color1 = e.target.hex.value
+        gradientContainer.classList.remove('hidden')
+        gradientBox.classList = ("rectangle")
+        gradientBtn.textContent = "Create Gradient"
+        
+        const setGradient = () => {
+            const randomColor = Math.floor(Math.random()*16777215).toString(16);
+            gradientBox.style.background = `linear-gradient(to right, #${color1}, #${randomColor})`
+        }
+        gradientBox.append(gradientBtn)
+        document.querySelector('#gradient').append(gradientBox)
+        
+        gradientBtn.addEventListener('click', setGradient)
+    })
+    
     //Sample text color
     const textSample = document.querySelector('#text h2')
     const textForm = document.querySelector('#text-form')
@@ -155,9 +174,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         textForm.reset()
     })
-    
- 
+}) 
 
-  
-
-})
+//Select font
+function getOption(selectFont) {
+    var listValue = selectFont.options[selectFont.selectedIndex].value;
+    document.querySelector("#text h2").style.fontFamily = listValue;
+}
