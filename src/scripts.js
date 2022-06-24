@@ -26,6 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', (e) => {
         e.preventDefault()
         
+       
+
         //Display schemes
         const complementScheme = document.querySelector('#complement')
         const analogicScheme = document.querySelector('#analogous')
@@ -163,6 +165,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const color1 = e.target.hex.value
         const color1Name = document.createElement('p')
         const color2Name = document.createElement('p')
+
+        gradientContainer.innerHTML = ""
         gradientContainer.classList.remove('hidden')
         gradientBox.classList = ("rectangle")
         gradientBtn.textContent = "Create Gradient"

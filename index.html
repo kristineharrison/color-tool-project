@@ -31,7 +31,8 @@
                 </p>
                 <form id="input-form">
                     <label>Have a HEX value?</label>
-                    <input type="text" name="hex" placeholder="Numbers Only NO #">
+                    <input type="text" name="hex" placeholder="e.g. FFAA88 - no #"
+                    pattern="[0-9a-fA-F]{3}([0-9a-fA-F]{3})?" title="Please enter valid Hex code without #">
                     <button id="hex-input-btn">Submit</button>
                 </form>
                 <div id="mode">
@@ -85,7 +86,6 @@
                                 on the color wheel.
                                 </li>
                                 <li><strong>Monochrome Color:</strong> variations of one color.
-                                
                                 </li>
                             </ul>
                         </div>
