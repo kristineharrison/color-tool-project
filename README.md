@@ -8,3 +8,4 @@ Working on a project that involves both print and digital color and need various
 - JSON data file
 - Light and Dark theme
 - Text examples
+- API to fetch color info
